@@ -1,181 +1,140 @@
 <!DOCTYPE html>
 <html lang="ja">
-        <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="../css/style.css">
-                <title>ハイブリッドワーク実験_20250102</title>
-        </head>
-        <body>
-                <div id="header">
-                    <div class="element-container">
-                        <p id="title">ハイブリッドワーク実験</p>
-                        ご協力いただきありがとうございます<br>
-                        実験所要時間は30分になります<br><br>
-                        <strong>タスク内容</strong><br>
-                        本実験は課題区間25分、アンケート区間5分で構成されます<br>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>ハイブリッドワーク実験_心理評価</title>
+</head>
+<body>
+    <div id="header">
+        <div class="element-container">
+            <p id="title">ハイブリッドワーク実験</p>
+            ご協力いただきありがとうございます<br>
+            実験所要時間は30分になります<br><br>
 
-                        課題区間中は各々自由に作業を行なってください<br><br>
-                        
+            <strong>タスク内容</strong><br>
+            本実験は課題区間25分、アンケート区間5分で構成されます<br>
+            課題区間中は各々自由に作業を行なってください<br><br>
 
-                        <strong>注意事項</strong><br>
-                        ・音声の巻き戻し・早送りはしないようにお願いします<br>
-                        ・音声は途中で音量を調節して構いません<br>
-                        ・データは統計的に使用され、今回の調査目的以外には使用しません<br>
-                        ・個人を特定できる情報は研究担当者以外に知られることがないよう管理します<br>
-                        ・アンケートは集中力が維持でき、静かで邪魔が入りにくい場所で受けてください<br><br>
-                    </div>
+            <strong>注意事項</strong><br>
+            ・データは統計的に使用され、今回の調査目的以外には使用しません<br>
+            ・個人を特定できる情報は研究担当者以外に知られることがないよう管理します<br>
+            ・アンケートは集中力が維持でき、静かで邪魔が入りにくい場所で受けてください<br><br>
+        </div>
+    </div>
+    
+    <form action="https://docs.google.com/forms/d/1v1qXpNbLXTtZ34IeZ0QK3ouxfNOnCg_yyBCYvL0Dg38/formResponse" method="post">
+        
+        <!-- 名前入力 -->
+        <div id="unit-evaluation">
+            <div class="element-container">
+                <p class="question">名前を記入してください</p>
+                <input id="input-name" type="text" name="entry.1180368034" value="" placeholder="名前を入力" required="required" style="font-size: 20px;" />
+            </div>
+        </div>
+
+        <!-- アンケート部分（最初から表示されます） -->
+        <div id="sound-evaluation">
+            <div class="center">
+                <p id="title">音に関するアンケート</p>
+            </div>
+            
+            <div class="element-container">
+                <p class="question">音声からだれ（性別、職業、名前）がいるかどの程度わかりましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1281446358" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
                 </div>
-                
-                <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScPxuMQsNADXDRZXxFejzZBzCKzEYOb1EYtWgQ4VOYGyHRwag/formResponse"
-                        method="post">
-                        <div id="unit-evaluation">
-                            <div class="element-container">
-                                    <p class="question">名前を記入してください</p>
-                                    <input id="input-name" type="text" name="entry.1180368034" value="" placeholder="名前を入力"
-                                            required="required" style="font-size: 20px;" />
-                            </div>
-                            <div class="element-container">
-                                    <p class="question">以下のサンプル音声を聞いて、音量を調整してください<br>※ポーという音がギリギリ聞こえるぐらいが目安です。調整が終わりましたら下の「聞きました」を押してください</p>
-                                    <audio id="play-audio" controls preload="auto" src="../mp3/volume adjustment.mp3" type="audio/mp3">サンプル音声</audio>
-                                    <label onclick="putData(0,1)"><input type="radio" value=""
-                                            required="required" />聞きました</label>
-                            </div>
-                        </div>
-<!-------------------------------------------------------------------------音声提示------------------------------------------------------------------------------------------------------------->
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->                        
-                        <div id="play-sound" style="display: none;">
-                            <div class="element-container">
-                                <p class="question">音声を聞いてください</p>
-                                <audio id="volume-adjustment-audio" controls preload="auto" src="../mp3/vs_sound_m1_ver2.mp3" type="audio/mp3">視聴音声</audio>
-                            </div>
-                            <script>
-                                // 音声再生後に別のHTMLファイルを開く
-                                document.querySelector('#play-sound audio').addEventListener('ended', function() {
-                                    next_process2()
-                                });
-                            </script>
-                        </div>
-<!-------------------------------------------------------------------------アンケート------------------------------------------------------------------------------------------------------------->
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-                        <div id="sound-evaluation" style="display: none;">
-                            <div class="center">
-                                <p id="title">音に関するアンケート</p>
-                            </div>
-<!-------------------------------------------------------------------------個人性・コンテクスト------------------------------------------------------------------------------------------------------------->
-                            <div class="element-container">
-                                <p class="question">音声からだれ（性別、職業、名前）がいるかどの程度わかりましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1281446358" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">音声からどこでなにをしているかどの程度わかりましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1223438205" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">どのような状況だと思いましたか<br><font size="3.5">※「いつ・どこで・だれが・なにをしているか」をわかる範囲で回答してください</font></p>
-                                <label onclick="putData2(1,1)">
-                                    <textarea name="entry.95396048" rows="10" cols="50"></textarea>
-                                    <!--<input type="text" name="entry.13884143" value="" placeholder="記入欄" style="font-size: 20px;" />-->
-                                </label>
-                            </div>
-
-<!-------------------------------------------------------------------------感情・明瞭性・集中度・雰囲気伝達------------------------------------------------------------------------------------------------------------->
-                            <div class="element-container">
-                                <p class="question">音声内の人物がどのような感情を抱いているかわかりましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1493047966" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">音声内の人物がどのような会話をしているのかわかりましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.2054140009" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">仕事中にこの音声が流れた場合、作業への集中を阻害すると思いますか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.41297268" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">そう思った理由を回答してください
-                                <label onclick="putData2(2,1)">
-                                    <textarea name="entry.451735769" rows="10" cols="50"></textarea>
-                                    <!--<input type="text" name="entry.13884143" value="" placeholder="記入欄" style="font-size: 20px;" />-->
-                                </label>
-                            </div>
-                            <div class="element-container">
-                                <p class="question">仕事中にこの音声が流れた場合、音声内の場の雰囲気をどの程度感じられると思いますか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.14178865" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">そう思った理由を回答してください
-                                <label onclick="putData2(3,1)">
-                                    <textarea name="entry.1429519486" rows="10" cols="50"></textarea>
-                                    <!--<input type="text" name="entry.13884143" value="" placeholder="記入欄" style="font-size: 20px;" />-->
-                                </label>
-                            </div>
-<!-------------------------------------------------------------------------安心感・孤独感・快適度・煩わしさ・違和感------------------------------------------------------------------------------------------------------------->
-                            <div class="element-container">
-                                <p class="question">音声を聴いて安心感を感じましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1239627112" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">音声を聴くことで、孤独感が低減されましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1786451540" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <br>
-                                <p class="question">音声を聴いて快適度を感じましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1358984037" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <p class="question">音声を聴いて煩わしさを感じましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.1441331029" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                                <p class="question">音声を聴いて違和感を感じましたか</p>
-                                <div style="text-align: center;">全く当てはまらない<input class="ques-elem"
-                                    style="direction: ltr; width: 60%;" type="range"
-                                    name="entry.208293244" min="0" max="1" step="0.01"
-                                    value="0.5" />とても当てはまる
-                                </div>
-                            </div>
-                        </div>
-                        <p id="warning-text" class="center" style="color: red;">未入力の項目があります</p>
-                        <div class="center">
-                                <button id="submit-button" style="display: none;" type="submit" name="button" value="送信"
-                                        disabled>送信</button>
-                        </div>        
-                </form>
-<!-------------------------------------------------------------------------「次へ」のボタン設定（form内で設定すると送信されてしまう）------------------------------------------------------------------------------------------------------------->
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-                <div class="center">
-                        <button id="next-button" onclick="next_process()" disabled>次へ</button>
+                <br>
+                <p class="question">音声からどこでなにをしているかどの程度わかりましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1223438205" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
                 </div>
-                <script src="../js/main.js"></script>
-        </body>
+                <br>
+                <p class="question">どのような状況だと思いましたか<br><font size="3.5">※「いつ・どこで・だれが・なにをしているか」をわかる範囲で回答してください</font></p>
+                <label>
+                    <textarea name="entry.95396048" rows="10" cols="50"></textarea>
+                </label>
+            </div>
+
+            <div class="element-container">
+                <p class="question">音声内の人物がどのような感情を抱いているかわかりましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1493047966" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">音声内の人物がどのような会話をしているのかわかりましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.2054140009" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">仕事中にこの音声が流れた場合、作業への集中を阻害すると思いますか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.41297268" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">そう思った理由を回答してください</p>
+                <label>
+                    <textarea name="entry.451735769" rows="10" cols="50"></textarea>
+                </label>
+            </div>
+            
+            <div class="element-container">
+                <p class="question">仕事中にこの音声が流れた場合、音声内の場の雰囲気をどの程度感じられると思いますか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.14178865" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">そう思った理由を回答してください</p>
+                <label>
+                    <textarea name="entry.1429519486" rows="10" cols="50"></textarea>
+                </label>
+            </div>
+
+            <div class="element-container">
+                <p class="question">音声を聴いて安心感を感じましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1239627112" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">音声を聴くことで、孤独感が低減されましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1786451540" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <br>
+                <p class="question">音声を聴いて快適度を感じましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1358984037" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <p class="question">音声を聴いて煩わしさを感じましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.1441331029" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+                <p class="question">音声を聴いて違和感を感じましたか</p>
+                <div style="text-align: center;">全く当てはまらない
+                    <input class="ques-elem" style="direction: ltr; width: 60%;" type="range" name="entry.208293244" min="0" max="1" step="0.01" value="0.5" />
+                    とても当てはまる
+                </div>
+            </div>
+        </div>
+        
+        <p id="warning-text" class="center" style="color: red; display: none;">未入力の項目があります</p>
+        <div class="center">
+            <button id="submit-button" type="submit" name="button" value="送信">送信</button>
+        </div>        
+    </form>
+    
+    <script src="../js/main.js"></script>
+</body>
 </html>
